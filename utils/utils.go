@@ -6,8 +6,11 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/willy-r/ecom-example/types"
 )
+
+var Validate = validator.New()
 
 func ParseJSON(r *http.Request, payload interface{}) error {
 	if r.Body == nil {
