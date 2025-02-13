@@ -24,7 +24,7 @@ func main() {
 		log.Fatalf("could not connect to db: %v", err)
 	}
 
-	initStorage(db)
+	InitStorage(db)
 
 	server := api.NewApiServer(":8080", db)
 
@@ -33,7 +33,7 @@ func main() {
 	}
 }
 
-func initStorage(db *sql.DB) {
+func InitStorage(db *sql.DB) {
 	err := db.Ping()
 	if err != nil {
 		log.Fatalf("could not ping db: %v", err)
