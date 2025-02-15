@@ -29,6 +29,10 @@ func WriteError(w http.ResponseWriter, status int, err error) {
 	WriteJSON(w, status, map[string]string{"error": err.Error()})
 }
 
+func PermissionDenied(w http.ResponseWriter) {
+	WriteError(w, http.StatusUnauthorized, fmt.Errorf("permission denied"))
+}
+
 func ScanRowsIntoUser(rows *sql.Rows) (*types.User, error) {
 	u := new(types.User)
 	if err := rows.Scan(&u.ID, &u.FirstName, &u.LastName, &u.Email, &u.Password, &u.CreatedAt); err != nil {

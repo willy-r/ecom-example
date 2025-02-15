@@ -1,6 +1,9 @@
+@baseUrl = http://localhost:8080/api/v1
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3NDAyNTkzMTEsInVzZXJJZCI6IjEifQ.m86q9K_mSJKT_uVbfszxS0PLcCX1j5BsP6hlz51YM3Y
+
 ### Register a new user
 
-POST http://localhost:8080/api/v1/register
+POST {{baseUrl}}/api/v1/register
 Content-Type: application/json
 
 {
@@ -12,7 +15,7 @@ Content-Type: application/json
 
 ### Login a user
 
-POST http://localhost:8080/api/v1/login
+POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
@@ -22,17 +25,32 @@ Content-Type: application/json
 
 ### Create a new product
 
-POST http://localhost:8080/api/v1/products
+POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-    "name": "Product 1",
-    "description": "Description of product 1",
+    "name": "Product 2",
+    "description": "Description of product 2",
     "image": "https://via.placeholder.com/150",
-    "price": 100,
+    "price": 50,
     "quantity": 10
 }
 
 ### Get products
 
-GET http://localhost:8080/api/v1/products
+GET {{baseUrl}}/products
+
+### Cart checkout
+
+POST {{baseUrl}}/cart/checkout
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "items": [
+        {
+            "productId": 2,
+            "quantity": 2
+        }
+    ]
+}
