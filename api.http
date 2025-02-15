@@ -20,3 +20,19 @@ Content-Type: application/json
     "password": "test"
 }
 
+### Create a new product
+
+POST http://localhost:8080/api/v1/products
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "description": "Description of product 1",
+    "image": "https://via.placeholder.com/150",
+    "price": 100,
+    "quantity": 10
+}
+
+### Get products
+
+GET http://localhost:8080/api/v1/products

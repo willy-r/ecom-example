@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/willy-r/ecom-example/service/product"
 	"github.com/willy-r/ecom-example/service/user"
 )
 
@@ -25,6 +26,10 @@ func (s *ApiServer) Start() error {
 	userStore := user.NewStore(s.db)
 	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subrouter)
+
+	productStore := product.NewStore(s.db)
+	productHanlder := product.NewHandler(productStore)
+	productHanlder.RegisterRoutes(subrouter)
 
 	log.Println("starting server on", s.addr)
 

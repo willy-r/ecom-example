@@ -29,10 +29,18 @@ func WriteError(w http.ResponseWriter, status int, err error) {
 	WriteJSON(w, status, map[string]string{"error": err.Error()})
 }
 
-func ScanRowIntoUser(rows *sql.Rows) (*types.User, error) {
+func ScanRowsIntoUser(rows *sql.Rows) (*types.User, error) {
 	u := new(types.User)
 	if err := rows.Scan(&u.ID, &u.FirstName, &u.LastName, &u.Email, &u.Password, &u.CreatedAt); err != nil {
 		return nil, err
 	}
 	return u, nil
+}
+
+func ScanRowsIntoProduct(rows *sql.Rows) (*types.Product, error) {
+	p := new(types.Product)
+	if err := rows.Scan(&p.ID, &p.Name, &p.Description, &p.Image, &p.Price, &p.Quantity, &p.CreatedAt); err != nil {
+		return nil, err
+	}
+	return p, nil
 }
